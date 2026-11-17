@@ -1,0 +1,1 @@
+# SMPL-Junior-Points-Table
