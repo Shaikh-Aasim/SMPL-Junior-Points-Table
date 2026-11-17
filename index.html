@@ -1,0 +1,1228 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#102a43" />
+    <title>SMPL Junior | Cricket League</title>
+    <style>
+      :root {
+        --navy: #102a43;
+        --navy2: #173f5f;
+        --blue: #2474a6;
+        --gold: #e5b95c;
+        --bg: #f3f6f9;
+        --card: #fff;
+        --text: #172b3a;
+        --muted: #687b8b;
+        --line: #e4eaf0;
+        --green: #16845b;
+        --greenbg: #e8f6ef;
+        --red: #b54747;
+        --shadow: 0 10px 30px rgba(16, 42, 67, 0.07);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          sans-serif;
+      }
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+      button {
+        cursor: pointer;
+      }
+      .topbar {
+        background: linear-gradient(115deg, var(--navy), #1d4967);
+        color: #fff;
+        padding: 24px max(22px, calc((100% - 1180px) / 2));
+        border-bottom: 4px solid var(--gold);
+      }
+      .top-inner {
+        max-width: 1180px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .crest {
+        width: 48px;
+        height: 48px;
+        border: 1px solid #ffffff55;
+        border-radius: 13px;
+        display: grid;
+        place-items: center;
+        color: var(--gold);
+        font-weight: 900;
+        font-size: 17px;
+        letter-spacing: -1px;
+      }
+      .eyebrow {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #c5d5e1;
+        font-weight: 700;
+      }
+      .topbar h1 {
+        font-size: 26px;
+        line-height: 1.15;
+        margin: 4px 0 0;
+        letter-spacing: 0.2px;
+      }
+      .season {
+        border: 1px solid #ffffff3b;
+        border-radius: 999px;
+        padding: 8px 13px;
+        font-size: 12px;
+        color: #e1ebf2;
+        white-space: nowrap;
+      }
+      .container {
+        max-width: 1180px;
+        margin: 28px auto;
+        padding: 0 22px 50px;
+      }
+      .intro {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+      .intro h2 {
+        margin: 0;
+        font-size: 23px;
+      }
+      .intro p {
+        margin: 5px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .actions {
+        display: flex;
+        gap: 9px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        border: 0;
+        border-radius: 9px;
+        padding: 10px 15px;
+        font-weight: 700;
+        font-size: 13px;
+        transition: 0.18s;
+      }
+      .btn-primary {
+        background: var(--blue);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: #195e8a;
+      }
+      .btn-outline {
+        background: #fff;
+        color: var(--navy);
+        border: 1px solid var(--line);
+      }
+      .btn-danger {
+        background: #fff;
+        color: var(--red);
+        border: 1px solid #efd5d5;
+      }
+      .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        margin-bottom: 20px;
+      }
+      .stat,
+      .panel {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+      }
+      .stat {
+        padding: 17px 18px;
+      }
+      .stat-label {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 650;
+      }
+      .stat-value {
+        font-size: 26px;
+        font-weight: 800;
+        margin-top: 5px;
+        color: var(--navy);
+      }
+      .stat-sub {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: 1.04fr 0.96fr;
+        gap: 18px;
+        align-items: start;
+      }
+      .panel {
+        overflow: hidden;
+      }
+      .panel-head {
+        padding: 17px 19px;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+      }
+      .panel-head h3 {
+        margin: 0;
+        font-size: 16px;
+      }
+      .panel-head span {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      th {
+        background: #f8fafc;
+        color: #718292;
+        text-align: center;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        padding: 12px 10px;
+        font-weight: 800;
+      }
+      td {
+        padding: 13px 10px;
+        border-top: 1px solid #edf1f4;
+        text-align: center;
+      }
+      td:first-child,
+      th:first-child {
+        text-align: left;
+        padding-left: 17px;
+      }
+      .team-cell {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-weight: 750;
+      }
+      .rank {
+        width: 22px;
+        height: 22px;
+        display: grid;
+        place-items: center;
+        border-radius: 7px;
+        background: #edf2f6;
+        color: #536879;
+        font-size: 11px;
+      }
+      .team-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--blue);
+      }
+      .pts {
+        font-weight: 850;
+        color: var(--navy);
+      }
+      .nrr {
+        font-variant-numeric: tabular-nums;
+        font-weight: 750;
+      }
+      .fixtures {
+        display: grid;
+        gap: 0;
+      }
+      .fixture {
+        padding: 15px 18px;
+        border-bottom: 1px solid #edf1f4;
+      }
+      .fixture:last-child {
+        border-bottom: 0;
+      }
+      .fixture-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 11px;
+      }
+      .match-no {
+        font-size: 10px;
+        letter-spacing: 1px;
+        font-weight: 850;
+        color: #718292;
+        text-transform: uppercase;
+      }
+      .status {
+        font-size: 10px;
+        font-weight: 800;
+        border-radius: 99px;
+        padding: 5px 8px;
+        background: #f0f3f6;
+        color: #667887;
+      }
+      .status.done {
+        background: var(--greenbg);
+        color: var(--green);
+      }
+      .versus {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: 10px;
+      }
+      .fixture-team {
+        font-size: 13px;
+        font-weight: 750;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        min-width: 0;
+      }
+      .fixture-team:last-child {
+        justify-content: flex-end;
+        text-align: right;
+      }
+      .fixture-team.winner {
+        color: var(--green);
+      }
+      .win-mark {
+        font-size: 10px;
+        color: var(--green);
+        font-weight: 900;
+      }
+      .vs {
+        font-size: 10px;
+        color: #9aa8b4;
+        font-weight: 800;
+      }
+      .fixture-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 12px;
+        gap: 10px;
+      }
+      .result {
+        font-size: 11px;
+        color: var(--muted);
+        line-height: 1.4;
+      }
+      .result strong {
+        color: var(--text);
+      }
+      .fixture .btn {
+        padding: 7px 11px;
+        font-size: 11px;
+        white-space: nowrap;
+      }
+      .empty-note {
+        padding: 22px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .footer {
+        text-align: center;
+        color: #8795a1;
+        font-size: 11px;
+        margin-top: 22px;
+      }
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(9, 25, 39, 0.62);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+        z-index: 10;
+      }
+      .modal-backdrop.open {
+        display: flex;
+      }
+      .modal {
+        width: min(680px, 100%);
+        max-height: 92vh;
+        overflow: auto;
+        background: #fff;
+        border-radius: 17px;
+        box-shadow: 0 25px 80px #06182755;
+      }
+      .modal-head {
+        padding: 19px 22px;
+        background: #f8fafc;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .modal-head h2 {
+        margin: 0;
+        font-size: 19px;
+        color: var(--navy);
+      }
+      .modal-head p {
+        margin: 5px 0 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .close {
+        border: 0;
+        background: #eaf0f4;
+        color: #526777;
+        width: 31px;
+        height: 31px;
+        border-radius: 8px;
+        font-size: 19px;
+      }
+      .modal-body {
+        padding: 20px 22px;
+      }
+      .innings {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 15px;
+        margin-bottom: 14px;
+      }
+      .innings-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 13px;
+      }
+      .innings-title h3 {
+        margin: 0;
+        font-size: 14px;
+      }
+      .innings-title small {
+        color: var(--muted);
+        font-size: 10px;
+      }
+      .fields {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 11px;
+      }
+      .field label {
+        display: block;
+        font-size: 11px;
+        font-weight: 750;
+        color: #526777;
+        margin-bottom: 6px;
+      }
+      .field input,
+      .field select {
+        width: 100%;
+        border: 1px solid #d9e2e9;
+        border-radius: 8px;
+        padding: 10px 11px;
+        background: #fff;
+        color: var(--text);
+        outline: none;
+      }
+      .field input:focus,
+      .field select:focus {
+        border-color: var(--blue);
+        box-shadow: 0 0 0 3px #2474a615;
+      }
+      .hint {
+        font-size: 10px;
+        color: #7a8b98;
+        margin-top: 5px;
+      }
+      .modal-error {
+        display: none;
+        background: #fff1f0;
+        border: 1px solid #f1d0cc;
+        color: #a13e37;
+        padding: 10px 12px;
+        border-radius: 8px;
+        font-size: 12px;
+        margin: 0 0 12px;
+      }
+      .modal-error.show {
+        display: block;
+      }
+      .modal-foot {
+        padding: 15px 22px;
+        border-top: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: center;
+      }
+      .modal-foot .left-note {
+        font-size: 10px;
+        color: var(--muted);
+        max-width: 270px;
+        line-height: 1.4;
+      }
+      .toast {
+        position: fixed;
+        bottom: 22px;
+        left: 50%;
+        transform: translate(-50%, 20px);
+        background: #173f5f;
+        color: #fff;
+        padding: 11px 17px;
+        border-radius: 10px;
+        font-size: 12px;
+        box-shadow: var(--shadow);
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.25s;
+        z-index: 20;
+      }
+      .toast.show {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+      .confirm-box {
+        max-width: 390px;
+        padding: 24px;
+      }
+      .confirm-box h3 {
+        margin: 0 0 8px;
+      }
+      .confirm-box p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+      .confirm-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 9px;
+        margin-top: 18px;
+      }
+      @media (max-width: 850px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        .stats {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 560px) {
+        .topbar {
+          padding: 19px 17px;
+        }
+        .topbar h1 {
+          font-size: 21px;
+        }
+        .season {
+          font-size: 10px;
+        }
+        .container {
+          padding: 0 13px 35px;
+          margin-top: 20px;
+        }
+        .intro {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .stats {
+          gap: 9px;
+        }
+        .stat {
+          padding: 13px;
+        }
+        .stat-value {
+          font-size: 23px;
+        }
+        .fields {
+          grid-template-columns: 1fr 1fr;
+        }
+        .fields .field:last-child {
+          grid-column: 1/-1;
+        }
+        .modal-body {
+          padding: 15px;
+        }
+        .modal-head,
+        .modal-foot {
+          padding: 15px;
+        }
+        .modal-foot {
+          align-items: flex-end;
+        }
+        .modal-foot .left-note {
+          max-width: 175px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="top-inner">
+        <div class="brand">
+          <div class="crest">SMPL</div>
+          <div>
+            <h1>SMPL Junior</h1>
+          </div>
+        </div>
+        <div class="season">CRICKET LEAGUE</div>
+      </div>
+    </header>
+    <main class="container">
+      <div class="intro">
+        <div>
+          <h2>Tournament Dashboard</h2>
+        </div>
+        
+      </div>
+      <section class="stats">
+        <!-- <div class="stat">
+          <div class="stat-label">TEAMS</div>
+          <div class="stat-value">04</div>
+          <div class="stat-sub">Competing teams</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">LEAGUE MATCHES</div>
+          <div class="stat-value">06</div>
+          <div class="stat-sub">Round-robin format</div>
+        </div> -->
+        <div class="stat">
+          <div class="stat-label">COMPLETED</div>
+          <div class="stat-value" id="completedStat">0 / 6</div>
+          <div class="stat-sub">Matches saved</div>
+        </div>
+        <!-- <div class="stat">
+          <div class="stat-label">POINTS PER WIN</div>
+          <div class="stat-value">02</div>
+          <div class="stat-sub">Loss: 0 points</div>
+        </div> -->
+      </section>
+      <div class="layout">
+        <section class="panel">
+          <div class="panel-head">
+            <h3>Points Table</h3>
+            <span>Updated automatically</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Team</th>
+                  <th>P</th>
+                  <th>W</th>
+                  <th>L</th>
+                  <th>Pts</th>
+                  <th>NRR</th>
+                </tr>
+              </thead>
+              <tbody id="pointsBody"></tbody>
+            </table>
+          </div>
+          <div class="empty-note" id="tableNote">
+            Standings will update as match results are saved.
+          </div>
+        </section>
+        <section class="panel">
+          <div class="panel-head">
+            <h3>League Fixtures</h3>
+            <span>6 matches</span>
+          </div>
+          <div class="fixtures" id="fixtures"></div>
+        </section>
+      </div>
+      <div class="actions" style="margin-top: 10px;">
+          <button class="btn btn-outline" id="exportBtn">Export Results</button>
+          <button class="btn btn-danger" id="resetBtn">Reset Tournament</button>
+        </div>
+      <div class="footer">
+        SMPL JUNIOR · Tournament scoring Designed by <b>Aasim Shaikh</b>
+      </div>
+    </main>
+
+    <div
+      class="modal-backdrop"
+      id="scoreModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
+      <div class="modal">
+        <div class="modal-head">
+          <div>
+            <h2 id="modalTitle">Enter Match Score</h2>
+            <p id="modalSubtitle">
+              Record both innings to update the tournament.
+            </p>
+          </div>
+          <button class="close" id="closeModal" aria-label="Close">
+            &times;
+          </button>
+        </div>
+        <form id="scoreForm">
+          <div class="modal-body">
+            <div class="field" style="margin-bottom: 15px">
+              <label for="batFirst">BATTING FIRST</label>
+              <select id="batFirst" required></select>
+              <!-- <div class="hint">
+                Choose the toss winner's decision. The other team will bat
+                second.
+              </div> -->
+            </div>
+            <div class="innings">
+              <div class="innings-title">
+                <h3 id="firstTeamTitle">1st Innings</h3>
+                <!-- <small>Maximum 4 overs · 8 wickets</small> -->
+              </div>
+              <div class="fields">
+                <div class="field">
+                  <label for="firstRuns">TOTAL RUNS</label
+                  ><input
+                    id="firstRuns"
+                    type="number"
+                    min="0"
+                    max="500"
+                    step="1"
+                    placeholder="e.g. 42"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label for="firstWickets">WICKETS</label
+                  ><input
+                    id="firstWickets"
+                    type="number"
+                    min="0"
+                    max="8"
+                    step="1"
+                    placeholder="0–8"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label for="firstOvers">OVERS</label
+                  ><input
+                    id="firstOvers"
+                    type="text"
+                    inputmode="decimal"
+                    placeholder="e.g. 4.0"
+                    required
+                  />
+                  <div class="hint">Use .0 to .5 balls</div>
+                </div>
+              </div>
+            </div>
+            <div class="innings">
+              <div class="innings-title">
+                <h3 id="secondTeamTitle">2nd Innings</h3>
+                <!-- <small>Chase the target · No ties</small> -->
+              </div>
+              <div class="fields">
+                <div class="field">
+                  <label for="secondRuns">TOTAL RUNS</label
+                  ><input
+                    id="secondRuns"
+                    type="number"
+                    min="0"
+                    max="500"
+                    step="1"
+                    placeholder="e.g. 43"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label for="secondWickets">WICKETS</label
+                  ><input
+                    id="secondWickets"
+                    type="number"
+                    min="0"
+                    max="8"
+                    step="1"
+                    placeholder="0–8"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label for="secondOvers">OVERS</label
+                  ><input
+                    id="secondOvers"
+                    type="text"
+                    inputmode="decimal"
+                    placeholder="e.g. 3.4"
+                    required
+                  />
+                  <div class="hint">Use .0 to .5 balls</div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-error" id="formError" role="alert"></div>
+          </div>
+          <div class="modal-foot">
+            <!-- <div class="left-note">
+              Saving or editing this result will recalculate the points table
+              and NRR for all teams.
+            </div> -->
+            <div style="display: flex; gap: 8px">
+              <button type="button" class="btn btn-outline" id="cancelModal">
+                Cancel</button
+              ><button type="submit" class="btn btn-primary" id="saveBtn">
+                Save Match
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div
+      class="modal-backdrop"
+      id="confirmModal"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div class="modal confirm-box">
+        <h3 id="confirmTitle">Reset tournament?</h3>
+        <p id="confirmText">
+          This will permanently clear all saved match scores from this browser.
+        </p>
+        <div class="confirm-actions">
+          <button class="btn btn-outline" id="confirmCancel">Cancel</button
+          ><button class="btn btn-danger" id="confirmYes">
+            Reset all scores
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="toast" id="toast"></div>
+    <script>
+      (() => {
+        const TEAMS = [
+          "VR Defender",
+          "Gully Gladiator",
+          "King Hunters",
+          "Altamash 11",
+        ];
+        const MATCHES = [
+          { id: 1, a: "King Hunters", b: "VR Defender" },
+          { id: 2, a: "Altamash 11", b: "Gully Gladiator" },
+          { id: 3, a: "VR Defender", b: "Altamash 11" },
+          { id: 4, a: "Gully Gladiator", b: "King Hunters" },
+          { id: 5, a: "King Hunters", b: "Altamash 11" },
+          { id: 6, a: "Gully Gladiator", b: "VR Defender" },
+        ];
+        const STORAGE_KEY = "smplJuniorTournament_v1";
+        let results = loadResults();
+        let activeMatch = null;
+        const $ = (id) => document.getElementById(id);
+
+        function loadResults() {
+          try {
+            const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+            return saved && typeof saved === "object" ? saved : {};
+          } catch {
+            return {};
+          }
+        }
+        function persist() {
+          try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(results));
+          } catch {
+            showToast("Could not save. Please check browser storage settings.");
+          }
+        }
+        function oversToBalls(value) {
+          const str = String(value).trim();
+          const match = str.match(/^(\d+)(?:\.([0-5]))?$/);
+          if (!match) return null;
+          const overs = Number(match[1]),
+            balls = Number(match[2] || 0);
+          const total = overs * 6 + balls;
+          if (total < 1 || total > 24) return null;
+          return total;
+        }
+        function ballsToOvers(balls) {
+          return `${Math.floor(balls / 6)}.${balls % 6}`;
+        }
+        function fmtNRR(value) {
+          if (!Number.isFinite(value)) return "0.000";
+          return `${value > 0 ? "+" : ""}${value.toFixed(3)}`;
+        }
+        function calculateStandings() {
+          const stats = Object.fromEntries(
+            TEAMS.map((team) => [
+              team,
+              {
+                team,
+                played: 0,
+                won: 0,
+                lost: 0,
+                points: 0,
+                runsFor: 0,
+                ballsFaced: 0,
+                runsAgainst: 0,
+                ballsBowled: 0,
+                nrr: 0,
+              },
+            ]),
+          );
+          Object.values(results).forEach((match) => {
+            if (!match || !stats[match.firstTeam] || !stats[match.secondTeam])
+              return;
+            const first = stats[match.firstTeam],
+              second = stats[match.secondTeam];
+            const firstAllOut = match.firstWickets === 8;
+            const secondAllOut = match.secondWickets === 8;
+            const firstBallsForNRR = firstAllOut ? 24 : match.firstBalls;
+            const secondBallsForNRR = secondAllOut ? 24 : match.secondBalls;
+            first.played++;
+            second.played++;
+            first.runsFor += match.firstRuns;
+            first.ballsFaced += firstBallsForNRR;
+            first.runsAgainst += match.secondRuns;
+            first.ballsBowled += secondBallsForNRR;
+            second.runsFor += match.secondRuns;
+            second.ballsFaced += secondBallsForNRR;
+            second.runsAgainst += match.firstRuns;
+            second.ballsBowled += firstBallsForNRR;
+            if (match.secondRuns > match.firstRuns) {
+              second.won++;
+              second.points += 2;
+              first.lost++;
+            } else {
+              first.won++;
+              first.points += 2;
+              second.lost++;
+            }
+          });
+          Object.values(stats).forEach((s) => {
+            const scoredOvers = s.ballsFaced / 6,
+              concededOvers = s.ballsBowled / 6;
+            s.nrr = s.runsFor / scoredOvers - s.runsAgainst / concededOvers;
+          });
+          return Object.values(stats).sort(
+            (a, b) =>
+              b.points - a.points ||
+              b.nrr - a.nrr ||
+              b.won - a.won ||
+              a.team.localeCompare(b.team),
+          );
+        }
+        function render() {
+          const standings = calculateStandings();
+          $("completedStat").textContent = `${Object.keys(results).length} / 6`;
+          $("pointsBody").innerHTML = standings
+            .map(
+              (s, i) => `
+      <tr>
+        <td><div class="team-cell"><span class="rank">${i + 1}</span><span class="team-dot"></span>${escapeHtml(s.team)}</div></td>
+        <td>${s.played}</td><td>${s.won}</td><td>${s.lost}</td><td class="pts">${s.points}</td><td class="nrr">${fmtNRR(s.nrr)}</td>
+      </tr>`,
+            )
+            .join("");
+          $("tableNote").style.display = Object.keys(results).length
+            ? "none"
+            : "block";
+          $("fixtures").innerHTML = MATCHES.map((m) => {
+            const r = results[m.id];
+            if (!r)
+              return `<div class="fixture">
+        <div class="fixture-top"><span class="match-no">Match ${String(m.id).padStart(2, "0")}</span><span class="status">Upcoming</span></div>
+        <div class="versus"><div class="fixture-team">${escapeHtml(m.a)}</div><div class="vs">VS</div><div class="fixture-team">${escapeHtml(m.b)}</div></div>
+        <div class="fixture-bottom"><span class="result">4 overs · 8 players</span><button class="btn btn-primary" onclick="window.openScore(${m.id})">Enter Score</button></div>
+      </div>`;
+            const winner =
+              r.secondRuns > r.firstRuns ? r.secondTeam : r.firstTeam;
+            const loser = winner === r.firstTeam ? r.secondTeam : r.firstTeam;
+            const winRuns = winner === r.firstTeam ? r.firstRuns : r.secondRuns;
+            const loseRuns =
+              winner === r.firstTeam ? r.secondRuns : r.firstRuns;
+            const winnerWickets =
+              winner === r.firstTeam ? r.firstWickets : r.secondWickets;
+            const margin =
+              winner === r.firstTeam
+                ? `${Math.max(1, winRuns - loseRuns)} run${Math.max(1, winRuns - loseRuns) === 1 ? "" : "s"}`
+                : `${8 - winnerWickets} wickets`;
+            return `<div class="fixture">
+        <div class="fixture-top"><span class="match-no">Match ${String(m.id).padStart(2, "0")}</span><span class="status done">Completed</span></div>
+        <div class="versus">
+          <div class="fixture-team ${winner === m.a ? "winner" : ""}">${escapeHtml(m.a)} ${winner === m.a ? '<span class="win-mark">✓</span>' : ""}</div>
+          <div class="vs">VS</div>
+          <div class="fixture-team ${winner === m.b ? "winner" : ""}">${winner === m.b ? '<span class="win-mark">✓</span>' : ""}${escapeHtml(m.b)}</div>
+        </div>
+        <div class="fixture-bottom"><span class="result"><strong>${escapeHtml(r.firstTeam)} ${r.firstRuns}/${r.firstWickets}</strong> · <strong>${escapeHtml(r.secondTeam)} ${r.secondRuns}/${r.secondWickets}</strong><br>${escapeHtml(winner)} won by ${margin}</span><button class="btn btn-outline" onclick="window.openScore(${m.id})">Edit Score</button></div>
+      </div>`;
+          }).join("");
+        }
+        function escapeHtml(value) {
+          return String(value).replace(
+            /[&<>"']/g,
+            (ch) =>
+              ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;",
+              })[ch],
+          );
+        }
+        function openScore(id) {
+          activeMatch = MATCHES.find((m) => m.id === id);
+          if (!activeMatch) return;
+          const saved = results[id];
+          $("modalTitle").textContent = saved
+            ? `Edit Match ${String(id).padStart(2, "0")}`
+            : `Match ${String(id).padStart(2, "0")} · Score Entry`;
+          $("modalSubtitle").textContent =
+            `${activeMatch.a} vs ${activeMatch.b} · Enter both completed innings.`;
+          $("batFirst").innerHTML = [activeMatch.a, activeMatch.b]
+            .map(
+              (t) =>
+                `<option value="${escapeHtml(t)}">${escapeHtml(t)}</option>`,
+            )
+            .join("");
+          $("batFirst").value = saved ? saved.firstTeam : activeMatch.a;
+          [
+            "firstRuns",
+            "firstWickets",
+            "firstOvers",
+            "secondRuns",
+            "secondWickets",
+            "secondOvers",
+          ].forEach((id) => ($(id).value = ""));
+          if (saved) {
+            $("firstRuns").value = saved.firstRuns;
+            $("firstWickets").value = saved.firstWickets;
+            $("firstOvers").value = ballsToOvers(saved.firstBalls);
+            $("secondRuns").value = saved.secondRuns;
+            $("secondWickets").value = saved.secondWickets;
+            $("secondOvers").value = ballsToOvers(saved.secondBalls);
+          }
+          updateInningsLabels();
+          $("formError").classList.remove("show");
+          $("scoreModal").classList.add("open");
+          document.body.style.overflow = "hidden";
+        }
+        function updateInningsLabels() {
+          const first = $("batFirst").value;
+          const second =
+            first === activeMatch.a ? activeMatch.b : activeMatch.a;
+          $("firstTeamTitle").textContent = `1st Innings · ${first}`;
+          $("secondTeamTitle").textContent = `2nd Innings · ${second}`;
+        }
+        function closeScore() {
+          $("scoreModal").classList.remove("open");
+          document.body.style.overflow = "";
+          activeMatch = null;
+        }
+        function showError(message) {
+          $("formError").textContent = message;
+          $("formError").classList.add("show");
+        }
+        function showToast(message) {
+          const toast = $("toast");
+          toast.textContent = message;
+          toast.classList.add("show");
+          clearTimeout(showToast.timer);
+          showToast.timer = setTimeout(
+            () => toast.classList.remove("show"),
+            2600,
+          );
+        }
+        $("batFirst").addEventListener("change", updateInningsLabels);
+        $("scoreForm").addEventListener("submit", (event) => {
+          event.preventDefault();
+          if (!activeMatch) return;
+          const firstRuns = Number($("firstRuns").value),
+            firstWickets = Number($("firstWickets").value);
+          const secondRuns = Number($("secondRuns").value),
+            secondWickets = Number($("secondWickets").value);
+          const firstBalls = oversToBalls($("firstOvers").value),
+            secondBalls = oversToBalls($("secondOvers").value);
+          if (
+            ![firstRuns, firstWickets, secondRuns, secondWickets].every(
+              Number.isInteger,
+            ) ||
+            firstRuns < 0 ||
+            secondRuns < 0 ||
+            firstWickets < 0 ||
+            firstWickets > 8 ||
+            secondWickets < 0 ||
+            secondWickets > 8
+          ) {
+            showError("Enter valid whole-number runs and wickets (0–8).");
+            return;
+          }
+          if (firstBalls === null || secondBalls === null) {
+            showError(
+              "Enter valid overs between 0.1 and 4.0. Example: 3.2 means 3 overs and 2 balls.",
+            );
+            return;
+          }
+          if (firstWickets === 8 && firstBalls >= 24) {
+            /* valid all-out at end of innings */
+          }
+          if (secondWickets === 8 && secondBalls >= 24) {
+            /* valid all-out at end of innings */
+          }
+          // Compulsory chase: the chasing side must score more than the first
+          // innings total. If scores are equal, the target was not reached and
+          // the team batting first wins by 1 run (there is no tie).
+          const firstTeam = $("batFirst").value;
+          const secondTeam =
+            firstTeam === activeMatch.a ? activeMatch.b : activeMatch.a;
+          results[activeMatch.id] = {
+            firstTeam,
+            secondTeam,
+            firstRuns,
+            firstWickets,
+            firstBalls,
+            secondRuns,
+            secondWickets,
+            secondBalls,
+            savedAt: new Date().toISOString(),
+          };
+          persist();
+          render();
+          closeScore();
+          showToast("Match result saved. Points table and NRR updated.");
+        });
+        $("closeModal").addEventListener("click", closeScore);
+        $("cancelModal").addEventListener("click", closeScore);
+        $("scoreModal").addEventListener("click", (e) => {
+          if (e.target === $("scoreModal")) closeScore();
+        });
+        window.openScore = openScore;
+
+        $("resetBtn").addEventListener("click", () =>
+          $("confirmModal").classList.add("open"),
+        );
+        $("confirmCancel").addEventListener("click", () =>
+          $("confirmModal").classList.remove("open"),
+        );
+        $("confirmYes").addEventListener("click", () => {
+          results = {};
+          localStorage.removeItem(STORAGE_KEY);
+          render();
+          $("confirmModal").classList.remove("open");
+          showToast("Tournament scores have been reset.");
+        });
+        $("exportBtn").addEventListener("click", () => {
+          const standings = calculateStandings();
+          const lines = [
+            ["Position", "Team", "Played", "Won", "Lost", "Points", "NRR"],
+          ];
+          standings.forEach((s, i) =>
+            lines.push([
+              i + 1,
+              s.team,
+              s.played,
+              s.won,
+              s.lost,
+              s.points,
+              fmtNRR(s.nrr),
+            ]),
+          );
+          lines.push([]);
+          lines.push([
+            "Match",
+            "Team batting first",
+            "Runs",
+            "Wickets",
+            "Overs",
+            "Team batting second",
+            "Runs",
+            "Wickets",
+            "Overs",
+            "Winner",
+          ]);
+          MATCHES.forEach((m) => {
+            const r = results[m.id];
+            if (r)
+              lines.push([
+                `Match ${m.id}`,
+                r.firstTeam,
+                r.firstRuns,
+                r.firstWickets,
+                ballsToOvers(r.firstBalls),
+                r.secondTeam,
+                r.secondRuns,
+                r.secondWickets,
+                ballsToOvers(r.secondBalls),
+                r.secondRuns > r.firstRuns ? r.secondTeam : r.firstTeam,
+              ]);
+            else
+              lines.push([
+                `Match ${m.id}`,
+                m.a,
+                "",
+                "",
+                "",
+                m.b,
+                "",
+                "",
+                "",
+                "Upcoming",
+              ]);
+          });
+          const csv = lines
+            .map((row) =>
+              row
+                .map((v) => `"${String(v ?? "").replace(/"/g, '""')}"`)
+                .join(","),
+            )
+            .join("\r\n");
+          const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "SMPL-Junior-results.csv";
+          a.click();
+          URL.revokeObjectURL(url);
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            closeScore();
+            $("confirmModal").classList.remove("open");
+          }
+        });
+        render();
+      })();
+    </script>
+  </body>
+</html>
